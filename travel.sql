@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 07:58 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Generation Time: Nov 27, 2017 at 10:15 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -37,7 +38,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`Cat_id`, `Cat_name`) VALUES
-(1, 'India Tour Packages');
+(1, 'Family Tours'),
+(2, 'Religious Tours'),
+(3, 'Adventure Tours'),
+(4, 'Special Event Tours'),
+(5, 'National Parks'),
+(6, 'Themed Vacations'),
+(7, 'Small Group Tours');
 
 -- --------------------------------------------------------
 
@@ -52,42 +59,6 @@ CREATE TABLE `contactus` (
   `Email` varchar(50) NOT NULL,
   `Message` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `name` text NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `phone` bigint(10) NOT NULL,
-  `package` text NOT NULL,
-  `joudate` date NOT NULL,
-  `seats` bigint(30) NOT NULL,
-  `adult` bigint(30) NOT NULL,
-  `children` bigint(30) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `residence` varchar(30) NOT NULL,
-  `state` varchar(30) NOT NULL,
-  `zip` int(6) NOT NULL,
-  `country` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`name`, `email`, `phone`, `package`, `joudate`, `seats`, `adult`, `children`, `address`, `residence`, `state`, `zip`, `country`) VALUES
-('VASIKARAN P', 'vasikaranp1912@gmail.com', 7708168125, 'ENCHANTING HIMACHAL TOUR', '0000-00-00', 0, 0, 0, '3,udhayam street', 'Kumbakonam', 'Tamil Nadu', 612001, 'India'),
-('pragadeeswaran', 'praga12@gmail.com', 7708168125, 'ENCHANTING HIMACHAL TOUR', '0000-00-00', 0, 0, 0, '3,udhayam street', 'Kumbakonam', 'Tamil Nadu', 612001, 'India'),
-('Vinoth Kumar', 'vinoth@gmail.com', 9585676754, 'ENCHANTING HIMACHAL TOUR', '2024-03-19', 2, 0, 0, 'thanjavur', 'tnj', 'tn', 613101, 'india'),
-('Vinoth Kumar', 'vinoth1@gmail.com', 9585676754, 'MAGICAL ANDAMAN TOUR', '2024-01-18', 4, 2, 2, 'thanjavur', 'tnj', 'tn', 613101, 'india'),
-('Vinoth Kumar', 'vinoth2@gmail.com', 9585676754, 'ENCHANTING HIMACHAL TOUR', '2023-04-20', 3, 2, 1, 'thanjavur,tamilnadu', 'tnj', 'tn', 613101, 'india'),
-('Vinoth Kumar', 'vinoth3@gmail.com', 9585676754, 'ENCHANTING HIMACHAL TOUR', '2023-04-20', 1, 1, 0, 'thanjavur', 'tnj', 'tn', 613101, 'india'),
-('Vinoth Kumar', 'vinoth4@gmail.com', 9585676754, 'ENCHANTING HIMACHAL TOUR', '2023-04-20', 1, 1, 0, 'Thirukkattupalli,Tamilnadu', 'tnj', 'tn', 613101, 'india'),
-('Vinoth Kumar', 'vinoth5@gmail.com', 9585676754, 'ENCHANTING HIMACHAL TOUR', '2023-04-19', 2, 1, 1, 'Thirukkattupalli,Tamilnadu', 'tnj', 'tn', 613101, 'india');
 
 -- --------------------------------------------------------
 
@@ -132,74 +103,32 @@ CREATE TABLE `package` (
 --
 
 INSERT INTO `package` (`Packid`, `Packname`, `Category`, `Subcategory`, `Packprice`, `Pic1`, `Pic2`, `Pic3`, `Detail`) VALUES
-(1, 'Enchanting Himachal Tour', 1, 1, 22000, 'north india.jpg', 'Himalaya.jpeg', 'himalayas.jpg', 'Explore the unseen and visit Manali!'),
-(2, 'Varanasi Bodh Gaya Tour', 1, 1, 18000, 'north india.jpg', 'bodhgaya.jpeg', 'north india.jpg', 'To feel the magic in the air, visit Varanasi!'),
-(3, 'Cultural Rajasthan Tour', 1, 1, 27000, 'north india.jpg', 'thar.jpeg', 'jaipur.jpg', 'The Incredible State of India!'),
-(4, 'Shimla Manali Tour ', 1, 1, 25000, 'north india.jpg', 'chandigarh.jpg', 'manali.jpg', 'Scenic Beauty!'),
-(5, 'Mathura Vrindavan Tour', 1, 1, 25000, 'north india.jpg', 'mathura.jpg', 'north india.jpg', 'Exploring Uttar Pradesh!'),
-(6, 'Exotic Corbett Nainital Tour', 1, 1, 27000, 'north india.jpg', 'Corbett.jpeg', 'Corbett.jpeg', 'The Oldest National Park in India!'),
-(7, 'Golden Triangle Tour With Jodhpur', 1, 1, 22000, 'north india.jpg', 'jaipur.jpg', 'rajasthan.jpeg', 'The City Beautiful!'),
-(8, 'Charming Srinagar Gulmarg  Tour', 1, 1, 29000, 'north india.jpg', 'Gulmarg.jpg', 'Himalaya.jpeg', 'City of Wealth!'),
-(9, 'Enchanting Nainital Mussoorie Tour', 1, 1, 23000, 'north india.jpg', 'mussoorie.jpeg', 'Gulmarg.jpg', 'Never miss a moment in the mountains!'),
-(10, 'Super Saver Holiday Package', 1, 2, 12000, 'south india.jpg', 'coorg.jpg', 'bangalore.jpg', 'The Scotland of India!'),
-(11, 'Magical Andaman Tour', 1, 2, 22000, 'south india.jpg', 'andaman.jpg', 'andaman1.jpg', 'Emerald, Blue and You!'),
-(12, 'Spiritual South India Tour ', 1, 2, 18000, 'south india.jpg', 'rameshwaram.jpg', 'madurai.jpg', 'Choose Divinity for Life!'),
-(13, 'Mystic Marine Trails', 1, 2, 22000, 'south india.jpg', 'andaman1.jpg', 'andaman.jpg', 'Emerald, Blue and You!'),
-(14, 'Exciting Special Hill Tour', 1, 2, 15000, 'south india.jpg', 'hill.jpg', 'bangalore.jpg', 'The Land of Natural Beauty!'),
-(15, 'Exotic Tamil Nadu Tour', 1, 2, 19000, 'south india.jpg', 'madurai.jpg', 'rameshwaram.jpg', 'A Familiar Feeling!'),
-(16, 'Enchanting Kerala Delight', 1, 2, 15000, 'south india.jpg', 'cochin.jpg', 'kochin.jpg', 'On an Ayurvedic route!'),
-(17, 'Chennai Tirupati Package', 1, 2, 12000, 'south india.jpg', 'tirupati.jpg', 'chennai.jpg', 'Tirupati Tourism!'),
-(18, 'Mesmerizing Backwaters Tour', 1, 2, 17000, 'south india.jpg', 'backwater.jpg', 'cochin.jpg', 'Cruising through the Backwaters of Kerala!'),
-(19, 'Beautiful South Tour', 1, 3, 18000, 'educational.jpg', 'ooty.jpg', 'ooty.jpg', 'Queen of Hill Stations!'),
-(20, 'South Indian Ectasy Tour', 1, 3, 17000, 'educational.jpg', 'kodaikanal.jpg', 'hill.jpg', 'Dynamite of Emotions!'),
-(21, 'Bangalore Holiday Tour', 1, 3, 21000, 'educational.jpg', 'bangalore.jpg', 'login4.jpg', 'One State Many Worlds!'),
-(22, 'Best Of Kannyakumari', 1, 3, 18000, 'educational.jpg', 'kanyakumari.jpg', 'kochin.jpg', 'The Land of Three Seas!'),
-(23, 'Alluring South India', 1, 3, 21000, 'educational.jpg', 'chennai.jpg', 'tirupati.jpg', 'Smells of Culture,Coffee,Coast!'),
-(24, 'Captivating Kerala', 1, 3, 23000, 'educational.jpg', 'kochin.jpg', 'cochin.jpg', 'Kerala Package!'),
-(25, 'The Indian Splendor Package', 1, 3, 24000, 'educational.jpg', 'mumbai.jpg', 'goa.jpg', 'City of Dreams!'),
-(26, 'Special Himalayan Tour', 1, 3, 19000, 'educational.jpg', 'agra.jpeg', 'uttarpradesh.jpeg', 'Love at First Sight!'),
-(27, 'Deccan Heritage Tour', 1, 3, 17000, 'educational.jpg', 'vizag.jpg', 'vizag.jpg', 'Jewel of the East Coast!'),
-(28, 'Amazing Darjeeling Tour', 1, 4, 25000, 'eastindia.jpg', 'darjeeling.jpg', 'Himachal.jpg', 'The tea capital of the world, Darjeeling!'),
-(29, 'Verdent Nagaland Tour', 1, 4, 28000, 'eastindia.jpg', 'Nagaland.jpg', 'uttarkhand.jpeg', 'Land of Festivals!'),
-(30, 'Eastern Triangle Tour', 1, 4, 29000, 'eastindia.jpg', 'kalimpong.jpg', 'darjeeling.jpg', 'On the way to Lava!'),
-(31, 'Jharkhand Tour', 1, 4, 21000, 'eastindia.jpg', 'ranchi.jpg', 'uttarpradesh.jpeg', 'A New Experience!'),
-(32, 'Assam and Meghalaya Tour', 1, 4, 30000, 'eastindia.jpg', 'assam.jpg', 'Corbett.jpeg', 'Half Way To Heaven!'),
-(33, 'Kolkata Tour', 1, 4, 18000, 'eastindia.jpg', 'Howrah.jpg', 'Howrah.jpg', 'The Sweetest Part of India!'),
-(34, 'Sikkim Delight Tour', 1, 4, 26000, 'eastindia.jpg', 'sikkim.jpg', 'darjeeling.jpg', 'Small But Beautiful!'),
-(35, 'Mumbai Tour', 1, 5, 21000, 'westindia.jpeg', 'gate.jpeg', 'mumbai.jpg', 'City of Dreams!'),
-(36, 'Goa Tour', 1, 5, 32000, 'westindia.jpeg', 'goa.jpg', 'goa2.jpg', 'Discover Goa as Never Before!'),
-(37, 'Pune Tour', 1, 5, 24000, 'westindia.jpeg', 'pune.jpg', 'mumbai.jpg', 'The City With An Attitude!'),
-(38, 'Gujarat Tour', 1, 5, 21000, 'westindia.jpeg', 'Gujarat.jpg', 'jodhpur.jpg', 'Vibrant Gujarat!'),
-(39, 'Magical Andaman Islands', 1, 6, 34000, 'honeymoon.jpg', 'Baratang.jpeg', 'andaman.jpg', 'Emerald, Blue and You!'),
-(40, 'Honeymoon In Himalayas', 1, 6, 18000, 'honeymoon.jpg', 'himalayas.jpg', 'Himalaya.jpeg', 'Third Pole of the Earth!'),
-(41, 'Glimpses Of Kashmir', 1, 6, 23000, 'honeymoon.jpg', 'kashmir.jpg', 'mussoorie.jpeg', 'Chalo Kashmir!'),
-(42, 'Kerala Lovers Paradise', 1, 6, 19000, 'honeymoon.jpg', 'kochin.jpg', 'kerala1.jpg', 'Kerala Paradise'),
-(43, 'Romantic Ladakh Tour', 1, 6, 25000, 'honeymoon.jpg', 'ladakh.jpg', 'himalayas.jpg', 'Tired feet, Happy Heart!'),
-(44, 'Golden Sands Honeymoon Package', 1, 6, 22000, 'honeymoon.jpg', 'goa2.jpg', 'goa.jpg', 'Paradise of South Asia!'),
-(45, 'Fun Filled Thekkady Tour', 1, 6, 21000, 'honeymoon.jpg', 'thekkady.jpg', 'ooty.jpg', 'Thekkady tour'),
-(46, 'Romantic Jaipur Delight', 1, 6, 18000, 'honeymoon.jpg', 'jaipur.jpg', 'jaipur.jpg', 'Padharo Mharo Desh!'),
-(47, 'Romantic Himachal', 1, 6, 21000, 'honeymoon.jpg', 'manali.jpg', 'mussoorie.jpeg', 'Valley of the Gods!');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
-
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
-  `card_no` varchar(25) NOT NULL,
-  `exp_date` varchar(10) NOT NULL,
-  `ccv` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `payment`
---
-
-INSERT INTO `payment` (`id`, `card_no`, `exp_date`, `ccv`) VALUES
-(1, '1234 4234 2242 3323', '12/24', '2322'),
-(2, '2323 1231 3132 1321', '12/31', '1131');
+(1, 'Christmas Adventure in Lapaland     ', 1, 1, 20000, '24.jpg', '26.jpg', '25.jpg', 'What better way to celebrate Christmas than to spend it where Santa Claus lives? Come experience a traditional Lapland Christmas in Finland: meet Santa in person at the world-famous Santa Claus Village, enjoy the thrill of a dog sled ride and learn about the unique Sami culture at a reindeer farm. This magical holiday will surely create lasting memories for the entire family.'),
+(2, 'Agra Family Tour ', 1, 2, 10000, '30.jpg', '31.jpg', '4.jpg', 'A fun-filled holiday with your family is the best time to strengthen bonds and rejuvenate the love between dear ones. And, what could be a better place to have a good time with your family members than Agra? The pleasant weather, beautiful sceneries and delightful food is sure to put you in your best mood to revel the best time with your family. For a stress-free vacation, you can explore your options for Agra family holidays packages with us on Yatra.com. From hotel bookings to travel tickets, we offer various services to help you enjoy your Agra family tour packages. Visit the numerous attractions of this beautiful place in the company of your loved ones with our Agra family vacation and tour packages away from the routine tasks of life. '),
+(3, 'Holidays in Italy  ', 1, 5, 20000, '38.jpg', '39.jpg', '37.jpg', 'Enjoy golden beaches, sparkling seas, beautiful countryside, exciting cities and great cuisine on family holidays in Italy. Whether you are looking for an activity based holiday or one full of cultural pursuits, let our experience and insider knowledge help you tailor the ideal Italy family holiday.'),
+(4, 'Main attraction in Thailand', 1, 4, 400000, '42.jpg', '41.jpg', '40.jpg', 'Fascinating cultures, a nation that adores children, beautiful beaches in world famous resorts and a well-trodden tourist trail all combine to make Thailand family holidays popular with those looking for a combination of relaxation and adventure. Children can enjoy an invaluable experience discovering new cultures, customs and religions whilst visiting temples alongside having a huge amount of fun when exploring cities, towns and villages and of course in-resort.'),
+(5, 'Holidays in Vancouver ', 1, 3, 400000, '34.jpg', '36.jpg', '33.jpg', ' The lakes and mountains of Jasper, Banff and Yoho National Parks, provide the perfect backdrop for hiking and biking, while walking along the massive Athabasca Glacier feels like you are on top of the world. Horse riding, white water rafting, canoeing and whale watching are readily available for the adventurous traveller on our holidays to Canada. '),
+(6, 'Haridwar', 2, 6, 3000, '43.jpg', '44.jpg', '45.jpg', 'Haridwar means the \'Gateway to the abode of the gods\'. Legend has it, that Prince Bhagirath, through his penance, caused the river Ganges to come down to plains from the Himalayas so that his ancestors who had perished due to a curse of a sage could be revived. '),
+(7, 'Tivoli', 2, 7, 500000, '48.jpg', '47.jpg', '46.jpg', 'Villa d\'Este, in the town of Tivoli east of Rome, is a beautiful garden and palace complex that\'s listed on UNESCO\'s World Heritage List. The villa was built in 1560 and was the vision of Cardinal Ippolito II d\'Este (who narrowly failed to become a pope). The villa is famous for its magnificent garden of grottoes, fountains, nymphs and water sculpture. Cardinal d\'Este died in 1572. By then the work on the garden and the interior painting of the villa was mostly complete'),
+(8, 'Austria Trip', 2, 8, 300000, '50.jpg', '49.jpg', '51.jpg', 'Austria is a land of craggy Alps and elaborate baroque buildings. Visitors flock to the eternally elegant city of Vienna for its musums and palaces, cafes and churchs, and a night at one of the top opera houses in Europe.  With a few extra days, you could get your Sound of Music on in Salzburg, the baroque city ringed by castles and cliffs where Mozart was born (and the classic movie musical took place), and visit lovely little Innsbruck, high in the Tyrolean Alps.'),
+(9, 'Canadian Religious Places', 2, 9, 700000, '53.jpg', '52.jpg', '54.jpg', 'Canada is more like a multi-cultural country. Christianity with Roman Catholics and Protestants are predominant in Canada as the main religion. Religious tours in Canada take you to sights of importance, which include St. Anneâ€™s Anglican Church, Frikirju Church and St. Norbert. Apart from Christianity, other religions like Hinduism, Buddhism, Islam and Sikhism too have gained grounds in the country. '),
+(10, 'Christian Places in England', 2, 10, 1200000, '56.jpg', '57.jpg', '55.jpg', 'The Catholic Church in England and Wales is part of the worldwide Roman Catholic Church in full communion with the Pope. Celtic Christianity, with some traditions different from those of Rome, was present in Roman Britain from the first century AD, but after the departure of the Roman legions was in retreat to Paganism. In 597 AD, the first authoritative papal mission, establishing a direct link from the Kingdom of Kent to the See of Rome and to the Benedictine form of monasticism, was carried into effect by Augustine of Canterbury.'),
+(11, 'Christianity Places', 2, 11, 500000, '59.jpg', '60.jpg', '58.jpg', 'Christ Church Cathedral in Nelson is a beautiful Anglican church located in the  upper Trafalgar Street. The first church was built in the year 1851 at a different place and it was named as Christ Church Cathedral in 1886. A new church was created at the present site in 1887 but it was not before 1965 when the construction of this church got completed. '),
+(12, ' Best of India', 7, 12, 10000, '63.jpg', '62.jpg', '61.jpg', 'The Indian subcontinent is home to a number of ancient monuments, scenic locales, beaches, World Heritage Sites and cultural attractions. The states of Rajasthan, Gujarat, Goa, Himachal Pradesh, Jammu and Kashmir and Uttarakhand are among the top places toured by domestic and international tourists, pilgrims, wildlife enthusiasts and historians.'),
+(13, 'Best of England', 7, 13, 900000, '65.jpg', '66.jpg', '64.jpg', 'The Heart of England is an iconic region, encompassing Oxford, the Cotswolds, Stratford-upon-Avon and Bath, a UNESCO World Heritage site. On this five-day journey, we will visit Oxford and Lacock, explore quaint Cotswold villages famous for their charming honey-coloured stone cottages with thatched roofs and explore traditional stately homes.'),
+(14, 'Best of Canada', 7, 14, 700000, '67.jpg', '69.jpg', '68.jpg', 'It is so big it is hard to get your head around sometimes so, by joining a Canada small group holiday and like-minded tourists, it takes the pressure off the organisation front. They are perfect if you want a short cut to Canada’s cultural and natural highlights, such as hiking in the Rockies, going on a polar bear expedition, or dog sledding in the Yukon. '),
+(15, 'Best Places in Mumbai', 3, 16, 12000, '72.jpg', '73.jpg', '70.jpg', 'Mumbai, the industrial capital of India is one of the most popular places to holiday in India. To get details on places around Mumbai along with reliable info on places to visit in Mumbai or places to visit near Mumbai, tourists should come to Mustseeindia.com. A leading online travel website, Mustseeindia.com is the best place to book holidays for best places around Mumbai for picnic. '),
+(16, 'Best of Thailand', 3, 17, 400000, '76.jpg', '75.jpg', '77.jpg', 'Bangkok was an amazing introduction to Thailand, especially considering how much we saw in our one full day there. I remember telling our guide Ngu that if my whole trip ended the next day, I would still think visiting Thailand had been worthwhile. Ngu provided us with a remarkably thorough explanation of the historical and religious backgrounds of Wat Arun, the Royal Palace, and the Royal Barges. Although our day was full of activity, we never felt overwhelmed or rushed. In fact, we still had energy to attend a Thai dance show that evening, which Ngu kindly arranged for us and escorted us to, on his own time.'),
+(17, ' Best Events in Singapore', 4, 20, 80000, '83.jpg', '81.jpg', '82.jpg', 'There are so many Special events in Singapore like New Year celebration, Deepavali celebration, Christmas celebration, Food Festivals, Modeling Competition, Singing Competition etc...Singapore is also a best tourist place in the World...'),
+(18, 'Best Events in Germany', 4, 19, 600000, '86.jpg', '84.jpg', '85.jpg', 'There are so many Special events in Germany like New Year celebration, Deepavali celebration, Christmas celebration, Food Festivals, Modeling Competition, Singing Competition etc...Germany is also a best tourist place in the World...'),
+(19, 'Best Events in France', 4, 18, 600000, '88.jpg', '87.jpg', '89.jpg', 'There are so many Special events in France like New Year celebration, Deepavali celebration, Christmas celebration, Food Festivals, Modeling Competition, Singing Competition etc...France is also a best tourist place in the World...'),
+(20, 'Star Wars Wedding Ideas', 6, 23, 20000, '93.jpg', '95.jpg', '94.jpg', 'Let\'s be honest: a Star Wars wedding can be tricky. You want it to be over-the-top fun, but you also run the risk of making it feel like a kids\' party. We\'re here to help! Ahead, check out everything you need , from starry invites to a lightsaber send-off , to keep your big day classy and memorable at the same time. May the wedding-planning force be with you. '),
+(21, 'Christmas Party Themes  ', 6, 22, 100000, '97.jpg', '98.jpg', '99.jpg', 'Hundreds of christmas Party Ideas, christmas party themes, Invitations, Decorations, Party Supplies & Favors Party can help you plan and deliver a great Christmas holiday party. We have a variety of Christmas party themes for every type celebration. Spend a few moments browsing through a variety of Christmas party themes until you find the theme that is right for your holiday celebration. '),
+(22, 'Entertainment Themed Vacations', 6, 21, 100000, '101.jpg', '100.jpg', '102.jpg', 'At My Tour we create custom designed entertainment themed vacation packages based on your specific interests making each trip unique. My Tour will give you an idea of the types of packages that could be possible for an entertainment-themed holiday.'),
+(23, 'Best parks in Rajasthan', 5, 26, 3000, '107.jpg', '106.jpg', '108.jpg', 'Rajasthan the Largest state of India, famous for its rich culture and heritage, also have rich flora and fauna, although the forest cover is very little compare to other Indian states. Ranthambore National park at Rajasthan is world famous for tigers, below is the list of important wildlife national parks in Rajasthan. '),
+(24, 'Best parks in Kerala', 5, 25, 4000, '109.jpg', '110.jpg', '111.jpg', 'Kerala the gods own country is famous for its backwater, beaches and scenic beauty and wildlife, wildlife in Kerala are indeed some of the most magnificent and varied found anywhere in the world. The Western Ghats, the natural mountain barriers of Kerala, bordering Tamil Nadu and Karnataka are home to the majority of Kerala\'s wildlife, below is the list of some of the important wildlife national parks in Kerela. '),
+(25, 'Best parks in India', 5, 24, 2000, '113.jpg', '112.jpg', '114.jpg', 'There are over 80 national parks in India, spread all over the country. Some are larger and more accessible then others. Many people want to see the infamous tiger. The chance of spotting a tiger greatly depends on the size of the national park and the number of tigers, and is higher at some parks than others. '),
+(27, 'Travel in Israel', 3, 15, 100000, '130.png', '129.jpg', '131.jpg', 'Israel is a tiny country, it got cultural, culinary, architectural, historical and spiritual experiences of biblical proportions.\r\n\r\nIsrael is not somewhere you stop off at or drop by the Holy Land requires attention, commitment, devotion and an open mind and heart, regardless of whether you are Jewish, Christian, Hindu, Agnostic, Animist, Jedi or Rasta.');
 
 -- --------------------------------------------------------
 
@@ -220,12 +149,32 @@ CREATE TABLE `subcategory` (
 --
 
 INSERT INTO `subcategory` (`Subcatid`, `Subcatname`, `Catid`, `Pic`, `Detail`) VALUES
-(1, 'North India Tour ', 1, 'north india.jpg', ''),
-(2, 'South India Tour ', 1, 'south india.jpg', ''),
-(3, 'Educational Tour', 1, 'educational.jpg', ''),
-(4, 'East India Tour ', 1, 'eastindia.jpg', ''),
-(5, 'West India Tour ', 1, 'westindia.jpeg', ''),
-(6, 'Honeymoon Tour ', 1, 'honeymoon.jpg', '');
+(1, 'Family holiday in Lapland            ', 1, '1.jpg', 'A brilliant balance of cosy winter cottage accommodation and adventure, this holiday gives you a taste of the best wilderness activities and plenty of free time to explore too.'),
+(2, 'Family holiday to India   ', 1, '4.jpg', 'This relaxing holiday manages all of the organisational leg-work for you, so you can focus on combining family fun with exploring the phenomenal sights and sounds of India.'),
+(3, 'Canada family  holiday', 1, '6.jpg', 'Our only big Canadian adventure holiday for families, with 10 days of wilderness wonders, camping and ranching. From Banff to bears, Whistler to white water rafting.'),
+(4, 'Family holiday in Thailand ', 1, '131.jpg', 'This is a real family adventure taking in every face of Thailand - local life, national parks, rainforest and beaches - all held together by great organisation and excellent guides.'),
+(5, 'Family holiday in Italy', 1, '8.jpg', 'World-famous volcanoes, shimmering coastal towns and one of the most exciting humanities lessons ever imaginable. Are your family ready for the Italy tour?'),
+(6, 'Religious Tours in India', 2, '9.jpg', 'India is a land where various gods and goddess are worshiped over the years. The methods of worship are full of dedication and spirit. People used to visit India for seeing the Char Dham, Buddhist Pilgrimage and the famous temples of North India and South India. '),
+(7, 'Religious Tours in Italy', 2, '10.jpg', 'The religious Tours  represent an important phenomenon that involves the Tourism industry. Nowadays all over the world there are  40 million people  spending 4 billion dollars that love to visit the places of worship . They are driven by the wish to discover the roots of Christianity and to be moved by those holy places. This great business is particularly flourishing in Italy where there are a lot of significant, beautiful and charming destination and the Christian culture deeply radicated. The itinerary that we propose here ties many important Italian religious destinations.'),
+(8, 'Religious Tours in Europe', 2, '11.jpg', 'Every region of Europe offers a different and fascinating look on the religions that have influenced the world. Whether travelers would like to visit Vatican City, Lutheran cathedrals in Germany or Westminster Abbey in England, Europe offers a vast array of choices for religious-based tours.'),
+(9, 'Religious tours in Canada', 2, '14.jpg', 'Canada is more like a multi-cultural country. Christianity with Roman Catholics and Protestants are predominant in Canada as the main religion. Religious tours in Canada take you to sights of importance, which include St. Anneâ€™s Anglican Church, Frikirju Church and St. Norbert. Apart from Christianity, other religions like Hinduism, Buddhism, Islam and Sikhism too have gained grounds in the country. '),
+(10, 'Religious Tours in England', 2, '15.jpg', 'We follow the history of non-conformism in England and take in those particular sites that are dear to Baptists the world over. Sites relating to the founders of the Baptist faith who strived in those early days against all odds. At the same time we see some of England’s most beautiful countryside and splendid city locations.'),
+(11, 'Religious Tours in New zealand', 2, '16.jpg', ' In New Zealand, religious affiliation is of particular significance for data users interested in MÄori and in Pacific Island peoples. It is a variable of historical interest as well; religious affiliation has been collected in the New Zealand Census of Population and Dwellings since 1851. Religious affiliation is a variable of strong interest to religious organisations, social scientists, and can be used as an explanatory variable in studies on topics such as marriage formation and dissolution, fertility and income.'),
+(12, 'Small Group Tours in India', 7, '17.jpg', 'Religious affiliation is a variable of strong interest to religious organisations, social scientists, and can be used as an explanatory variable in studies on topics such as marriage formation and dissolution, fertility and income.'),
+(13, 'Small Group Tours in England', 7, '18.jpg', 'The Heart of England is an iconic region, encompassing Oxford, the Cotswolds, Stratford-upon-Avon and Bath, a UNESCO World Heritage site. On this five-day journey, we will visit Oxford and Lacock, explore quaint Cotswold villages famous for their charming honey-coloured stone cottages with thatched roofs and explore traditional stately homes.'),
+(14, 'Small Group Tours in Canada', 7, '19.jpg', 'It is so big it is hard to get your head around sometimes so, by joining a Canada small group holiday and like-minded tourists, it takes the pressure off the organisation front. They are perfect if you want a short cut to Canada’s cultural and natural highlights, such as hiking in the Rockies, going on a polar bear expedition, or dog sledding in the Yukon. '),
+(15, 'Adventure Tours in Israel', 3, '20.jpg', 'Israel is a tiny country, it got cultural, culinary, architectural, historical and spiritual experiences of biblical proportions.\r\n\r\nIsrael is not somewhere you stop off at or drop by the Holy Land requires attention, commitment, devotion and an open mind and heart, regardless of whether you are Jewish, Christian, Hindu, Agnostic, Animist, Jedi or Rasta.'),
+(16, 'Adventure Tours in Mumbai', 3, '71.jpg', 'Adventure Education Tours (Mumbai) Pvt. Ltd. is today recognized as Indiaâ€™s fastest growing Travel & Tour Company. The Adventure Tours Logo means its people care about what they do for you, and youâ€™ll find the quality and level of service you expect. Whether you are on a holiday, a tour, picnic or a conference, our services are professionally designed, high in quality and cost effective, to enable you to fulfill your lifelong dream. When it comes to finding what youâ€™re looking for, Adventure Education Tours (Mumbai) Pvt. Ltd. is always the best bet.\r\n'),
+(17, 'Adventure Tours in Thailand', 3, '74.jpg', 'It is difficult to express in words just how grateful Kamy and I are for the trip of a lifetime that you planned for us. Even though we were excited to travel to Asia for the first time, we still could not have imagined how memorable and special our visit to Thailand would be.  I realize that working with me was challenging. Unlike some of your other customers, I usually plan all my own travel, myself, because I like to go to places that aren\'t typically featured in arranged tours. I selected WildThailand because of its custom trip option and its focus on remote destinations. When I wrote you, I was impressed by your prompt response and your willingness to incorporate all our concerns and special interests into the sample itinerary you sent me. But even more impressive was your constant, attentive correspondence with me over a period of at least 3 months, as I asked you countless questions and made additional requests. You never grew impatient with me or stopped writing me, which is why I felt confident that our trip would be great, even though I had not previously heard of WildThailand.'),
+(18, 'Special Event Tours in France', 4, '78.jpg', 'As a country famed for its forward-thinking, be it in food, fashion, art or architecture, France certainly has plenty to celebrate. Indeed, the French love a festival: celebration is rooted deep in their culture, and there\'s always the promise of an exciting event. Time your trip to France well, and you could mingle with the rich and famous at the acclaimed Cannes Film Festival, or simply make like the locals and celebrate the uprising of modern France on Bastille Day. Of course, you can always just ask around for local festivals and events while you\'re there: from food markets to arts and crafts fairs, you\'ll find plenty to do throughout the year. '),
+(19, 'Special Event Tours in Germany', 4, '79.jpg', 'Enjoy special event tours in Germany.'),
+(20, 'Special Event Tours in Singapore', 4, '80.jpg', 'Special events tours in Singapore are Deepavali, New Year, Singapore Food Festival etc...'),
+(21, 'Themed Vacations for Singles', 6, '90.jpg', ' Vacation package based on two travelers includes round-trip airfare, hotel accommodations, breakfast daily, tours and more . Edinburgh and whisky make a perfect combination! This special trip will give you insight into the centuries-old process of whisky production, while exposing you to the vibrant city of Edinburgh, with the picturesque backdrop of the central Scottish Highlands. Come experience the magic of Edinburgh and drink in what the locals call, “the water of life”.'),
+(22, 'Christmas Themed Vacations', 6, '91.jpg', 'The long school break at Christmastime is a peak time for a winter family vacation. These festive getaways are sure to please kids and parents alike. '),
+(23, 'Star Wars Themed Vacation', 6, '92.png', 'My son is going to be 6 in November and we usually take them for vacation somewheres as a big Birthday gift...we are planning on going to Disney World, and I see we are going to miss the Star Wars weekends that are happening in June. Are there going to be any Star Wars attractions there in Nov.? Also what else Star Wars themed could be done? We save up for this since birth and want to make it over the top fun, so please no snide remarks...We all love Star Wars.'),
+(24, 'National Parks in India', 5, '103.jpeg', 'There are over 80 national parks in India, spread all over the country. Some are larger and more accessible then others. Many people want to see the infamous tiger. The chance of spotting a tiger greatly depends on the size of the national park and the number of tigers, and is higher at some parks than others. These five parks are all very popular with visitors. If there are specific types of animals you\'re interested in, discover where to find them at the top 8 parks to see wildlife in India'),
+(25, 'National Parks in Kerala', 5, '104.jpg', 'Kerala the gods own country is famous for its backwater, beaches and scenic beauty and wildlife, wildlife in Kerala are indeed some of the most magnificent and varied found anywhere in the world. The Western Ghats, the natural mountain barriers of Kerala, bordering Tamil Nadu and Karnataka are home to the majority of Kerala\'s wildlife, below is the list of some of the important wildlife national parks in Kerela.'),
+(26, 'National Parks in Rajasthan', 5, '105.jpg', 'Rajasthan the Largest state of India, famous for its rich culture and heritage, also have rich flora and fauna, although the forest cover is very little compare to other Indian states. Ranthambore National park at Rajasthan is world famous for tigers, below is the list of important wildlife national parks in Rajasthan. ');
 
 -- --------------------------------------------------------
 
@@ -244,10 +193,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Username`, `Pwd`, `Typeofuser`) VALUES
-('vasi', '12345', 'Admin'),
-('naveen ', '1306', 'Admin'),
-('praga', '12344', 'Admin'),
-('vasikaran', '1912', 'General');
+('mahmud', '1234', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -278,12 +224,6 @@ ALTER TABLE `package`
   ADD PRIMARY KEY (`Packid`);
 
 --
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `subcategory`
 --
 ALTER TABLE `subcategory`
@@ -297,38 +237,27 @@ ALTER TABLE `subcategory`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `Cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `Cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `contactus`
 --
 ALTER TABLE `contactus`
   MODIFY `contactid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
   MODIFY `Enquiryid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `package`
 --
 ALTER TABLE `package`
-  MODIFY `Packid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `Packid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `Subcatid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-COMMIT;
+  MODIFY `Subcatid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

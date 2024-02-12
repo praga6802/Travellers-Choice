@@ -1,11 +1,16 @@
 *{
   margin :0;
   padding:0;
+  
 }
 
-body{ 
-   background-color:rgba(194,192,230,1)
+body{
+   font-size: 30px;
+   background-color:rgb(237, 237, 241)
 }
+
+
+
 
 nav{
   background-color: #101820ff;
@@ -137,6 +142,12 @@ font-size: 21px;
   font-family:comic sans-serif;
   text-shadow:1px 3px 2px;
 }
+
+
+
+
+
+
 
 
 /* footer */
